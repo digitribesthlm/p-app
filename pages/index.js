@@ -200,13 +200,13 @@ const Home = () => {
                                             <th className="w-20">Putt</th>
                                             <th className="w-20">Length</th>
                                             <th className="w-20">Length Category</th>
-                                            <th className="w-20">Level</th>
-                                            <th className="w-20">Outcome</th>
-                                            <th className="w-20">Prepp</th>
-                                            <th className="w-20">Read</th>
-                                            <th className="w-20">Speed</th>
-                                            <th className="w-20">Stroke</th>
-                                            <th className="w-20">Mental</th>
+                                            <th className="w-20 bg-gray-100">Level</th>
+                                            <th className="w-20 bg-gray-100">Outcome</th>
+                                            <th className="w-20 bg-yellow-100">Prepp</th>
+                                            <th className="w-20 bg-yellow-100">Read</th>
+                                            <th className="w-20 bg-yellow-100">Speed</th>
+                                            <th className="w-20 bg-yellow-100">Stroke</th>
+                                            <th className="w-20 bg-yellow-100">Mental</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -215,13 +215,13 @@ const Home = () => {
                                                 <td className="w-20">{puttIndex + 1}</td>
                                                 <td className="w-20">{putt.length}</td>
                                                 <td className="w-20">{categorizePuttLength(putt.length)}</td>
-                                                <td className="w-20">{putt.level}</td>
-                                                <td className="w-20">{putt.outcome}</td>
-                                                <td className="w-20">{putt.prepp}</td>
-                                                <td className="w-20">{putt.read}</td>
-                                                <td className="w-20">{putt.speed}</td>
-                                                <td className="w-20">{putt.stroke}</td>
-                                                <td className="w-20">{putt.mental}</td>
+                                                <td className="w-20 bg-gray-100">{putt.level}</td>
+                                                <td className="w-20 bg-gray-100">{putt.outcome}</td>
+                                                <td className="w-20 bg-yellow-100">{putt.prepp}</td>
+                                                <td className="w-20 bg-yellow-100">{putt.read}</td>
+                                                <td className="w-20 bg-yellow-100">{putt.speed}</td>
+                                                <td className="w-20 bg-yellow-100">{putt.stroke}</td>
+                                                <td className="w-20 bg-yellow-100">{putt.mental}</td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -241,13 +241,13 @@ const Home = () => {
                                             <th className="w-20">Putt</th>
                                             <th className="w-20">Length</th>
                                             <th className="w-20">Length Category</th>
-                                            <th className="w-20">Level</th>
-                                            <th className="w-20">Outcome</th>
-                                            <th className="w-20">Prepp</th>
-                                            <th className="w-20">Read</th>
-                                            <th className="w-20">Speed</th>
-                                            <th className="w-20">Stroke</th>
-                                            <th className="w-20">Mental</th>
+                                            <th className="w-20 bg-gray-100">Level</th>
+                                            <th className="w-20 bg-gray-100">Outcome</th>
+                                            <th className="w-20 bg-yellow-100">Prepp</th>
+                                            <th className="w-20 bg-yellow-100">Read</th>
+                                            <th className="w-20 bg-yellow-100">Speed</th>
+                                            <th className="w-20 bg-yellow-100">Stroke</th>
+                                            <th className="w-20 bg-yellow-100">Mental</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -258,13 +258,13 @@ const Home = () => {
                                                     <td className="w-20">{puttIndex + 1}</td>
                                                     <td className="w-20">{putt.length}</td>
                                                     <td className="w-20">{categorizePuttLength(putt.length)}</td>
-                                                    <td className="w-20">{putt.level}</td>
-                                                    <td className="w-20">{putt.outcome}</td>
-                                                    <td className="w-20">{putt.prepp}</td>
-                                                    <td className="w-20">{putt.read}</td>
-                                                    <td className="w-20">{putt.speed}</td>
-                                                    <td className="w-20">{putt.stroke}</td>
-                                                    <td className="w-20">{putt.mental}</td>
+                                                    <td className="w-20 bg-gray-100">{putt.level}</td>
+                                                    <td className="w-20 bg-gray-100">{putt.outcome}</td>
+                                                    <td className="w-20 bg-yellow-100">{putt.prepp}</td>
+                                                    <td className="w-20 bg-yellow-100">{putt.read}</td>
+                                                    <td className="w-20 bg-yellow-100">{putt.speed}</td>
+                                                    <td className="w-20 bg-yellow-100">{putt.stroke}</td>
+                                                    <td className="w-20 bg-yellow-100">{putt.mental}</td>
                                                 </tr>
                                             ))
                                         ))}

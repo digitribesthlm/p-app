@@ -1,4 +1,3 @@
-// components/PuttForm.js
 import React from 'react';
 
 const PuttForm = ({ hole, numPutts, formData, handleFormDataChange }) => {
@@ -15,7 +14,7 @@ const PuttForm = ({ hole, numPutts, formData, handleFormDataChange }) => {
                 <div key={index} className="mb-2">
                     <h3 className="text-lg font-medium">Putt {index + 1}</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
+                        <div className="bg-blue-100 p-2 rounded">
                             <label className="block text-sm font-medium text-gray-700">Length</label>
                             <input
                                 type="number"
@@ -24,7 +23,7 @@ const PuttForm = ({ hole, numPutts, formData, handleFormDataChange }) => {
                                 className="input input-bordered w-full"
                             />
                         </div>
-                        <div>
+                        <div className="bg-blue-100 p-2 rounded">
                             <label className="block text-sm font-medium text-gray-700">Level</label>
                             <select
                                 value={putt.level}
@@ -38,7 +37,7 @@ const PuttForm = ({ hole, numPutts, formData, handleFormDataChange }) => {
                                 <option value="Flat">Flat</option>
                             </select>
                         </div>
-                        <div>
+                        <div className="bg-blue-100 p-2 rounded">
                             <label className="block text-sm font-medium text-gray-700">Outcome</label>
                             <select
                                 value={putt.outcome}
@@ -53,7 +52,7 @@ const PuttForm = ({ hole, numPutts, formData, handleFormDataChange }) => {
                                 <option value="Success">Success</option>
                             </select>
                         </div>
-                        <div>
+                        <div className="bg-yellow-100 p-2 rounded">
                             <label className="block text-sm font-medium text-gray-700">Prepp</label>
                             <select
                                 value={putt.prepp}
@@ -65,7 +64,7 @@ const PuttForm = ({ hole, numPutts, formData, handleFormDataChange }) => {
                                 <option value="No">No</option>
                             </select>
                         </div>
-                        <div>
+                        <div className="bg-yellow-100 p-2 rounded">
                             <label className="block text-sm font-medium text-gray-700">Read</label>
                             <select
                                 value={putt.read}
@@ -77,7 +76,7 @@ const PuttForm = ({ hole, numPutts, formData, handleFormDataChange }) => {
                                 <option value="Under">Under</option>
                             </select>
                         </div>
-                        <div>
+                        <div className="bg-yellow-100 p-2 rounded">
                             <label className="block text-sm font-medium text-gray-700">Speed</label>
                             <select
                                 value={putt.speed}
@@ -89,7 +88,7 @@ const PuttForm = ({ hole, numPutts, formData, handleFormDataChange }) => {
                                 <option value="Slow">Slow</option>
                             </select>
                         </div>
-                        <div>
+                        <div className="bg-yellow-100 p-2 rounded">
                             <label className="block text-sm font-medium text-gray-700">Stroke</label>
                             <select
                                 value={putt.stroke}
@@ -101,7 +100,7 @@ const PuttForm = ({ hole, numPutts, formData, handleFormDataChange }) => {
                                 <option value="Path">Path</option>
                             </select>
                         </div>
-                        <div>
+                        <div className="bg-yellow-100 p-2 rounded">
                             <label className="block text-sm font-medium text-gray-700">Mental</label>
                             <input
                                 type="text"
