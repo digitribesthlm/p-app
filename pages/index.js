@@ -1,4 +1,3 @@
-// pages/index.js
 import { useState, useEffect } from 'react';
 import PuttForm from '../components/PuttForm';
 
@@ -169,7 +168,6 @@ const Home = () => {
                             <option value={1}>1</option>
                             <option value={2}>2</option>
                             <option value={3}>3</option>
-                            <option value={4}>4</option>
                         </select>
                     </div>
                     <PuttForm hole={currentHole} numPutts={numPutts} formData={formData} handleFormDataChange={handleFormDataChange} />
@@ -200,13 +198,13 @@ const Home = () => {
                                             <th className="w-20">Putt</th>
                                             <th className="w-20">Length</th>
                                             <th className="w-20">Length Category</th>
-                                            <th className="hidden md:table-cell w-20">Level</th>
+                                            <th className="w-20">Level</th>
                                             <th className="w-20">Outcome</th>
-                                            <th className="hidden md:table-cell w-20">Prepp</th>
-                                            <th className="hidden md:table-cell w-20">Read</th>
-                                            <th className="hidden md:table-cell w-20">Speed</th>
-                                            <th className="hidden md:table-cell w-20">Stroke</th>
-                                            <th className="hidden md:table-cell w-20">Mental</th>
+                                            <th className="w-20">Prepp</th>
+                                            <th className="w-20">Read</th>
+                                            <th className="w-20">Speed</th>
+                                            <th className="w-20">Stroke</th>
+                                            <th className="w-20">Mental</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -215,13 +213,13 @@ const Home = () => {
                                                 <td className="w-20">{puttIndex + 1}</td>
                                                 <td className="w-20">{putt.length}</td>
                                                 <td className="w-20">{categorizePuttLength(putt.length)}</td>
-                                                <td className="hidden md:table-cell w-20">{putt.level}</td>
+                                                <td className="w-20">{putt.level}</td>
                                                 <td className="w-20">{putt.outcome}</td>
-                                                <td className="hidden md:table-cell w-20">{putt.prepp}</td>
-                                                <td className="hidden md:table-cell w-20">{putt.read}</td>
-                                                <td className="hidden md:table-cell w-20">{putt.speed}</td>
-                                                <td className="hidden md:table-cell w-20">{putt.stroke}</td>
-                                                <td className="hidden md:table-cell w-20">{putt.mental}</td>
+                                                <td className="w-20">{putt.prepp}</td>
+                                                <td className="w-20">{putt.read}</td>
+                                                <td className="w-20">{putt.speed}</td>
+                                                <td className="w-20">{putt.stroke}</td>
+                                                <td className="w-20">{putt.mental}</td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -241,13 +239,13 @@ const Home = () => {
                                             <th className="w-20">Putt</th>
                                             <th className="w-20">Length</th>
                                             <th className="w-20">Length Category</th>
-                                            <th className="hidden md:table-cell w-20">Level</th>
+                                            <th className="w-20">Level</th>
                                             <th className="w-20">Outcome</th>
-                                            <th className="hidden md:table-cell w-20">Prepp</th>
-                                            <th className="hidden md:table-cell w-20">Read</th>
-                                            <th className="hidden md:table-cell w-20">Speed</th>
-                                            <th className="hidden md:table-cell w-20">Stroke</th>
-                                            <th className="hidden md:table-cell w-20">Mental</th>
+                                            <th className="w-20">Prepp</th>
+                                            <th className="w-20">Read</th>
+                                            <th className="w-20">Speed</th>
+                                            <th className="w-20">Stroke</th>
+                                            <th className="w-20">Mental</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -258,13 +256,13 @@ const Home = () => {
                                                     <td className="w-20">{puttIndex + 1}</td>
                                                     <td className="w-20">{putt.length}</td>
                                                     <td className="w-20">{categorizePuttLength(putt.length)}</td>
-                                                    <td className="hidden md:table-cell w-20">{putt.level}</td>
+                                                    <td className="w-20">{putt.level}</td>
                                                     <td className="w-20">{putt.outcome}</td>
-                                                    <td className="hidden md:table-cell w-20">{putt.prepp}</td>
-                                                    <td className="hidden md:table-cell w-20">{putt.read}</td>
-                                                    <td className="hidden md:table-cell w-20">{putt.speed}</td>
-                                                    <td className="hidden md:table-cell w-20">{putt.stroke}</td>
-                                                    <td className="hidden md:table-cell w-20">{putt.mental}</td>
+                                                    <td className="w-20">{putt.prepp}</td>
+                                                    <td className="w-20">{putt.read}</td>
+                                                    <td className="w-20">{putt.speed}</td>
+                                                    <td className="w-20">{putt.stroke}</td>
+                                                    <td className="w-20">{putt.mental}</td>
                                                 </tr>
                                             ))
                                         ))}
