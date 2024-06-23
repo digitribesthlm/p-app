@@ -35,6 +35,7 @@ const PuttForm = ({ hole, numPutts, formData, handleFormDataChange }) => {
                                 <option value="Up">Up</option>
                                 <option value="Down">Down</option>
                                 <option value="Sidehill">Sidehill</option>
+                                <option value="Flat">Flat</option>
                             </select>
                         </div>
                         <div>
