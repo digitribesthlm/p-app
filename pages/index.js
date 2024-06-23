@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import PuttForm from '../components/PuttForm';
+import axios from 'axios';
 
 const Home = () => {
     const [holes, setHoles] = useState(0);
@@ -108,11 +109,32 @@ const Home = () => {
         }
     };
 
-    const handleSave = () => {
-        // Save data logic here
-        console.log('Selected course:', selectedCourse);
-        console.log('Saved data:', formData);
-        alert("Data saved!");
+    const handleSave = async () => {
+        const dataToSave = {
+            course: selectedCourse,
+            holes: Object.entries(formData).map(([holeNumber, putts]) => ({
+                hole_number: parseInt(holeNumber, 10),
+                putts
+            })),
+            statistics: {
+                total_putts: totalPutts,
+                short_putts: shortPutts,
+                total_last_putt_meters: totalLastPuttMeters,
+                total_putt_meters: totalPuttMeters
+            }
+        };
+
+        try {
+            const response = await axios.post('/api/save-putting-data', dataToSave);
+            if (response.data.success) {
+                alert("Data saved successfully!");
+            } else {
+                alert("Failed to save data.");
+            }
+        } catch (error) {
+            console.error("Error saving data:", error);
+            alert("An error occurred while saving data.");
+        }
     };
 
     const handleCourseChange = (e) => {
