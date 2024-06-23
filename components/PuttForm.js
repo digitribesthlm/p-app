@@ -46,10 +46,10 @@ const PuttForm = ({ hole, numPutts, formData, handleFormDataChange }) => {
                                 className="select select-bordered w-full"
                             >
                                 <option value="">Select</option>
-                                <option value="Short">Short</option>
-                                <option value="Past">Past</option>
-                                <option value="High">High</option>
-                                <option value="Low">Low</option>
+                                <option value="Short-High">Short / High</option>
+                                <option value="Short-Low">Short / Low</option>
+                                <option value="Past-High">Past / High</option>
+                                <option value="Past-Low">Past / Low</option>
                                 <option value="Success">Success</option>
                             </select>
                         </div>
