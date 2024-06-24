@@ -114,7 +114,16 @@ const Home = () => {
             course: selectedCourse,
             holes: Object.entries(formData).map(([holeNumber, putts]) => ({
                 hole_number: parseInt(holeNumber, 10),
-                putts
+                putts: putts.map(putt => ({
+                    length: parseFloat(putt.length),
+                    level: putt.level,
+                    outcome: putt.outcome,
+                    prepp: putt.prepp,
+                    read: putt.read,
+                    speed: putt.speed,
+                    stroke: putt.stroke,
+                    mental: putt.mental
+                }))
             })),
             statistics: {
                 total_putts: totalPutts,
@@ -128,6 +137,9 @@ const Home = () => {
             const response = await axios.post('/api/save-putting-data', dataToSave);
             if (response.data.success) {
                 alert("Data saved successfully!");
+                setFormData({}); // Clear form data after successful save
+                setHoles(0); // Reset hole selection
+                setSelectedCourse(''); // Reset selected course
             } else {
                 alert("Failed to save data.");
             }
