@@ -7,8 +7,8 @@ export default async function handler(req, res) {
         try {
             const client = await clientPromise;
             console.log("MongoDB client connected");
-            const db = client.db('putting');
-            const collection = db.collection('putting_data');
+            const db = client.db(process.env.MONGODB_DB);
+            const collection = db.collection('putting');
             console.log("Data to be inserted:", req.body);
             const result = await collection.insertOne(req.body);
             console.log("Data inserted successfully:", result);
