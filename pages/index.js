@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
+import puttingImage from '../public/images/putting.webp';
 import PuttForm from '../components/PuttForm';
 import axios from 'axios';
 
@@ -168,6 +170,9 @@ const Home = () => {
             <h1 className="text-2xl font-bold mb-4">Putting App</h1>
             {holes === 0 ? (
                 <div className="flex flex-col gap-4 mb-8">
+                    <div className="mb-4 flex justify-center">
+                        <Image src={puttingImage} alt="Putting" width={500} height={300} />
+                    </div>
                     <div className="mb-4">
                         <label htmlFor="course" className="block text-sm font-medium text-gray-700">Select Course:</label>
                         <select
