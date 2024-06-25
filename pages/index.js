@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import PuttForm from '../components/PuttForm';
 import axios from 'axios';
 
+
 const Home = () => {
     const [holes, setHoles] = useState(0);
     const [currentHole, setCurrentHole] = useState(1);
