@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import puttingImage from '../public/images/putting.webp';
+import Cookies from 'js-cookie';
 import PuttForm from '../components/PuttForm';
 import axios from 'axios';
 
@@ -20,7 +21,15 @@ const Home = () => {
     const [showResults, setShowResults] = useState(false);
 
     useEffect(() => {
-        // Calculate statistics whenever formData changes
+        // Load form data from cookies if available
+        const savedFormData = Cookies.get('formData');
+        if (savedFormData) {
+            setFormData(JSON.parse(savedFormData));
+        }
+    }, []);
+
+    useEffect(() => {
+        // Calculate statistics and save formData to cookies whenever formData changes
         let puttCount = 0;
         let shortCount = 0;
         let lastPuttMeters = 0;
@@ -48,7 +57,16 @@ const Home = () => {
         } else {
             setNotification('');
         }
+        Cookies.set('formData', JSON.stringify(formData));
     }, [formData]);
+
+    useEffect(() => {
+        // Load form data from cookies if available
+        const savedFormData = Cookies.get('formData');
+        if (savedFormData) {
+            setFormData(JSON.parse(savedFormData));
+        }
+    }, []);
 
     const handleHoleSelection = (num) => {
         setHoles(num);
