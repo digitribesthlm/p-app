@@ -11,7 +11,8 @@ export default async (req, res) => {
 
     try {
       const { db } = await connectToDatabase();
-      const collection = db.collection('putting');
+      const collectionName = process.env.MONGODB_COLLECTION;
+      const collection = db.collection(collectionName);
 
       const newPuttingData = {
         course,
@@ -22,7 +23,10 @@ export default async (req, res) => {
 
       const result = await collection.insertOne(newPuttingData);
 
-      return res.status(201).json({ message: 'Putting data saved', data: result.ops[0] });
+      // Use insertedId instead of ops
+      const insertedDocument = await collection.findOne({ _id: result.insertedId });
+
+      return res.status(201).json({ message: 'Putting data saved', data: insertedDocument });
     } catch (error) {
       console.error('Error saving putting data:', error.message, error.stack);
       return res.status(500).json({ error: 'Internal Server Error' });

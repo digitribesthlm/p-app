@@ -102,9 +102,21 @@ const Home = () => {
     };
 
     const handleFormDataChange = (hole, data) => {
+        const sanitizedData = data.map(putt => ({
+            ...putt,
+            length: putt.length.toString(),
+            level: putt.level.toString(),
+            outcome: putt.outcome.toString(),
+            prepp: putt.prepp.toString(),
+            read: putt.read.toString(),
+            speed: putt.speed.toString(),
+            stroke: putt.stroke.toString(),
+            mental: putt.mental.toString()
+        }));
+    
         setFormData(prevFormData => ({
             ...prevFormData,
-            [hole]: data
+            [hole]: sanitizedData
         }));
     };
 
@@ -135,7 +147,7 @@ const Home = () => {
             holes: Object.entries(formData).map(([holeNumber, putts]) => ({
                 hole_number: parseInt(holeNumber, 10),
                 putts: putts.map(putt => ({
-                    length: parseFloat(putt.length),
+                    length: putt.length,
                     level: putt.level,
                     outcome: putt.outcome,
                     prepp: putt.prepp,
@@ -152,10 +164,11 @@ const Home = () => {
                 total_putt_meters: totalPuttMeters
             }
         };
-
+    
         try {
             const response = await axios.post('/api/save-putting-data', dataToSave);
-            if (response.data.success) {
+            console.log("Response from server:", response.data);
+            if (response.status === 201) {
                 alert("Data saved successfully!");
                 setFormData({}); // Clear form data after successful save
                 setHoles(0); // Reset hole selection
