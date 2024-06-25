@@ -10,8 +10,12 @@ const MobileMenu = () => {
 
     return (
         <div className="relative">
-            <button onClick={toggleMenu} className="p-2 bg-gray-800 text-white rounded-md">
-                {isOpen ? 'Close' : 'Menu'}
+            <button onClick={toggleMenu} className="p-2 bg-gray-800 text-white rounded-md fixed top-4 right-4 z-50">
+                <div className="space-y-2">
+                    <span className="block w-8 h-0.5 bg-white"></span>
+                    <span className="block w-8 h-0.5 bg-white"></span>
+                    <span className="block w-8 h-0.5 bg-white"></span>
+                </div>
             </button>
             {isOpen && (
                 <div className="absolute top-12 left-0 w-full bg-white shadow-md">
