@@ -13,7 +13,7 @@ import React, { useState } from 'react';
      e.preventDefault();                                                                                                                                                               
                                                                                                                                                                                        
      try {                                                                                                                                                                             
-       const response = await axios.post('/api/login', { email, password });                                                                                                           
+       const response = await axios.post('/api/login', { email, password });                                                                                                          
        Cookies.set('token', response.data.token);                                                                                                                                      
        router.push('/');                                                                                                                                                               
      } catch (error) {                                                                                                                                                                 
