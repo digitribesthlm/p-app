@@ -5,11 +5,12 @@ const Settings = () => {
   const [homeCourse, setHomeCourse] = useState('');
   const [unit, setUnit] = useState('meters');
   const [status, setStatus] = useState('active');
+  const [gender, setGender] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission, e.g., send data to an API or update state
-    console.log({ hcp, homeCourse, unit, status });
+    console.log({ hcp, homeCourse, unit, status, gender });
   };
 
   return (
@@ -57,6 +58,20 @@ const Settings = () => {
             >
               <option value="active">Active</option>
               <option value="inactive">Inactive</option>
+            </select>
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700">Gender</label>
+            <select
+              className="select select-bordered w-full"
+              value={gender}
+              onChange={(e) => setGender(e.target.value)}
+            >
+              <option value="">Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+              <option value="prefer_not_to_say">Prefer not to say</option>
             </select>
           </div>
           <div className="text-center">
