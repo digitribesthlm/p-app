@@ -21,6 +21,9 @@ export default async (req, res) => {
       const userId = decodedToken.userId;
 
       const user = await collection.findOne({ _id: new ObjectId(userId) });
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
       const userEmail = user.email;
 
       const newPuttingData = {
