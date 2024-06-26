@@ -39,7 +39,7 @@ const Home = () => {
     }, []);
 
     useEffect(() => {
-        // Calculate statistics and save formData to cookies whenever formData changes
+        // Calculate statistics and save formData to cookies whenever formData changes.
         let puttCount = 0;
         let shortCount = 0;
         let lastPuttMeters = 0;
