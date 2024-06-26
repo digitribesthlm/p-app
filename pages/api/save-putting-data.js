@@ -1,4 +1,3 @@
-// pages/api/save-putting-data.js
 import { connectToDatabase } from '../../lib/mongodb';
 import jwt from 'jsonwebtoken';
 import { ObjectId } from 'mongodb';
@@ -13,35 +12,43 @@ export default async (req, res) => {
 
     try {
       const { db } = await connectToDatabase();
-      const collectionName = process.env.MONGODB_COLLECTION;
-      const collection = db.collection(collectionName);
+      const usersCollection = db.collection('users');
+      const puttingDataCollection = db.collection('puttingData');
 
-      const token = req.headers.authorization?.replace('Bearer ', '');
-      const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+      const token = req.headers.authorization?.split(' ')[1];
+      if (!token) {
+        return res.status(401).json({ error: 'No token provided' });
+      }
+
+      let decodedToken;
+      try {
+        decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+      } catch (error) {
+        return res.status(401).json({ error: 'Invalid token' });
+      }
+
       const userId = decodedToken.userId;
 
-      const user = await collection.findOne({ _id: new ObjectId(userId) });
+      const user = await usersCollection.findOne({ _id: new ObjectId(userId) });
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
       }
-      const userEmail = user.email;
 
       const newPuttingData = {
         course,
         holes,
         statistics,
-        user: userEmail,
+        userId: new ObjectId(userId),
+        userEmail: user.email,
         createdAt: new Date(),
       };
 
-      const result = await collection.insertOne(newPuttingData);
-
-      // Use insertedId instead of ops
-      const insertedDocument = await collection.findOne({ _id: result.insertedId });
+      const result = await puttingDataCollection.insertOne(newPuttingData);
+      const insertedDocument = await puttingDataCollection.findOne({ _id: result.insertedId });
 
       return res.status(201).json({ message: 'Putting data saved', data: insertedDocument });
     } catch (error) {
-      console.error('Error saving putting data:', error.message, error.stack);
+      console.error('Error saving putting data:', error);
       return res.status(500).json({ error: 'Internal Server Error' });
     }
   } else {
