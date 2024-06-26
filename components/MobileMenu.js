@@ -1,43 +1,43 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const MobileMenu = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const router = useRouter();
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
 
+    const handleLinkClick = (href) => {
+        setIsOpen(false);
+        router.push(href);
+    };
+
     return (
-        <div className="relative">
-            <button onClick={toggleMenu} className="p-2 bg-gray-800 text-white rounded-md fixed top-4 right-4 z-50">
-                <div className="space-y-2">
-                    <span className="block w-8 h-0.5 bg-white"></span>
-                    <span className="block w-8 h-0.5 bg-white"></span>
-                    <span className="block w-8 h-0.5 bg-white"></span>
-                </div>
-            </button>
-            {isOpen && (
-                <div className="absolute top-12 left-0 w-full bg-white shadow-md">
-                    <ul className="flex flex-col p-4">
-                        <li className="mb-2">
-                            <Link href="/">
-                                <a className="text-gray-800">Home</a>
-                            </Link>
-                        </li>
-                        <li className="mb-2">
-                            <Link href="/about">
-                                <a className="text-gray-800">About</a>
-                            </Link>
-                        </li>
-                        <li className="mb-2">
-                            <Link href="/contact">
-                                <a className="text-gray-800">Contact</a>
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-            )}
+        <div className="drawer drawer-end">
+            <input id="my-drawer" type="checkbox" className="drawer-toggle" checked={isOpen} onChange={toggleMenu} />
+            <div className="drawer-content">
+                {/* Page content here */}
+                <label htmlFor="my-drawer" className="btn btn-primary drawer-button fixed top-4 right-4 z-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-5 h-5 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </label>
+            </div> 
+            <div className="drawer-side">
+                <label htmlFor="my-drawer" className="drawer-overlay"></label>
+                <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
+                    <li>
+                        <a onClick={() => handleLinkClick("/")} className="text-xl font-semibold">Home</a>
+                    </li>
+                    <li>
+                        <a onClick={() => handleLinkClick("/strokes-gained")} className="text-xl font-semibold">Strokes Gained</a>
+                    </li>
+                    <li>
+                        <a onClick={() => handleLinkClick("/contact")} className="text-xl font-semibold">Contact</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     );
 };
