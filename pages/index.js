@@ -179,7 +179,7 @@ const Home = () => {
             }
         } catch (error) {
             console.error("Error saving data:", error);
-            alert(`An error occurred while saving data. Status: ${response.status}`);
+            alert("An error occurred while saving data. Status:", response.data);
         }
     };
 
