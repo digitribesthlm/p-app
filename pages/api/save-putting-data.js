@@ -39,7 +39,7 @@ export default async (req, res) => {
         holes,
         statistics,
         userId: new ObjectId(userId),
-        userEmail: user.email,
+        user: user.email,
         createdAt: new Date(),
       };
 
