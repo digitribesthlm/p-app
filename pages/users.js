@@ -6,10 +6,9 @@ import React from 'react';
      <div className="container mx-auto p-4">                                              
        <h1 className="text-2xl font-bold mb-4">Users</h1>                                 
        {error ? (                                                                         
-         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3        
-         rounded">                                                                                
-                     <p>{error}</p>                                                               
-                   </div>                                                                             
+         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+           <p>{error}</p>
+         </div>
        ) : users.length === 0 ? (                                                         
          <p>No users found.</p>                                                           
        ) : (                                                                              
