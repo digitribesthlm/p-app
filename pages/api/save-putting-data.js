@@ -1,5 +1,7 @@
 // pages/api/save-putting-data.js
 import { connectToDatabase } from '../../lib/mongodb';
+import jwt from 'jsonwebtoken';
+import { ObjectId } from 'mongodb';
 
 export default async (req, res) => {
   if (req.method === 'POST') {
@@ -14,10 +16,18 @@ export default async (req, res) => {
       const collectionName = process.env.MONGODB_COLLECTION;
       const collection = db.collection(collectionName);
 
+      const token = req.headers.authorization?.replace('Bearer ', '');
+      const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+      const userId = decodedToken.userId;
+
+      const user = await collection.findOne({ _id: new ObjectId(userId) });
+      const userEmail = user.email;
+
       const newPuttingData = {
         course,
         holes,
         statistics,
+        user: userEmail,
         createdAt: new Date(),
       };
 

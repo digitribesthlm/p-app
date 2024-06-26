@@ -176,7 +176,12 @@ const Home = () => {
         };
     
         try {
-            const response = await axios.post('/api/save-putting-data', dataToSave);
+            const token = Cookies.get('token');
+            const response = await axios.post('/api/save-putting-data', dataToSave, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            });
             console.log("Response from server:", response.data);
             if (response.status === 201) {
                 alert("Data saved successfully!");
