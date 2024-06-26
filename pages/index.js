@@ -13,7 +13,7 @@ const Home = () => {
   useEffect(() => {
     const token = Cookies.get('token');
     if (!token) {
-      router.push('/login');
+      router.replace('/login');
     }
   }, []);
     const [holes, setHoles] = useState(0);
