@@ -13,7 +13,7 @@ export default async (req, res) => {
     try {
       const { db } = await connectToDatabase();
       const usersCollection = db.collection('users');
-      const puttingDataCollection = db.collection('puttingData');
+      const puttingDataCollection = db.collection('putting');
 
       const token = req.headers.authorization?.split(' ')[1];
       if (!token) {
