@@ -92,24 +92,38 @@ const StrokesGainedPage = () => {
   }, [selectedUnit]);
 
   return (
-    <div>
-      <h1>Strokes Gained Putting</h1>
-      <div>
-        <label htmlFor="hcp-select">Select Handicap: </label>
-        <select id="hcp-select" value={selectedHCP} onChange={handleHCPChange}>
-          <option value="Pro">Pro</option>
-          <option value="10 HCP">10 HCP</option>
-          {/* Add more options as needed */}
-        </select>
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
+      <h1 className="text-3xl font-bold mb-6">Strokes Gained Putting</h1>
+      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mb-6">
+        <div className="mb-4">
+          <label htmlFor="hcp-select" className="block text-gray-700">Select Handicap:</label>
+          <select
+            id="hcp-select"
+            className="select select-bordered w-full"
+            value={selectedHCP}
+            onChange={handleHCPChange}
+          >
+            <option value="Pro">Pro</option>
+            <option value="10 HCP">10 HCP</option>
+            {/* Add more options as needed */}
+          </select>
+        </div>
+        <div className="mb-4">
+          <label htmlFor="unit-select" className="block text-gray-700">Select Unit:</label>
+          <select
+            id="unit-select"
+            className="select select-bordered w-full"
+            value={selectedUnit}
+            onChange={handleUnitChange}
+          >
+            <option value="ft">Feet</option>
+            <option value="m">Meters</option>
+          </select>
+        </div>
       </div>
-      <div>
-        <label htmlFor="unit-select">Select Unit: </label>
-        <select id="unit-select" value={selectedUnit} onChange={handleUnitChange}>
-          <option value="ft">Feet</option>
-          <option value="m">Meters</option>
-        </select>
+      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-4xl">
+        <StrokesGainedChart data={data} />
       </div>
-      <StrokesGainedChart data={data} />
     </div>
   );
 }
