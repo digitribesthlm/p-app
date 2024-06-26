@@ -1,9 +1,31 @@
-
 // pages/api/save-putting-data.js
 import { connectToDatabase } from '../../lib/mongodb';
+import jwt from 'jsonwebtoken';
+
+function getUserEmailFromToken(token) {
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    return decoded.email;
+  } catch (error) {
+    if (error.name === 'TokenExpiredError') {
+      console.log('Token has expired');
+      // You might want to trigger a token refresh here or handle it in your frontend
+    } else {
+      console.error('Error decoding token:', error);
+    }
+    return null;
+  }
+}
 
 export default async (req, res) => {
   if (req.method === 'POST') {
+    const token = req.headers.authorization?.split(' ')[1]; // Assuming the token is sent in the Authorization header
+    const email = getUserEmailFromToken(token);
+    
+    if (!email) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
     const { course, holes, statistics } = req.body;
 
     if (!course || !holes || !statistics) {
@@ -19,12 +41,13 @@ export default async (req, res) => {
         course,
         holes,
         statistics,
+        user: email,
         createdAt: new Date(),
       };
 
       const result = await collection.insertOne(newPuttingData);
 
-      // Use insertedId instead of ops
+      // Use insertedId to fetch the inserted document
       const insertedDocument = await collection.findOne({ _id: result.insertedId });
 
       return res.status(201).json({ message: 'Putting data saved', data: insertedDocument });
@@ -37,4 +60,3 @@ export default async (req, res) => {
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
-
