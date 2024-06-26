@@ -1,13 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';                                      
+import { useRouter } from 'next/router';                                                 
+import Cookies from 'js-cookie'; 
 import Image from 'next/image';
 import puttingImage from '../public/images/putting.webp';
-import Cookies from 'js-cookie';
 import PuttForm from '../components/PuttForm';
 import axios from 'axios';
 
 
 const Home = () => {
-    const [holes, setHoles] = useState(0);
+    const [holes, setHoles] = useState(0);                                               
+    const router = useRouter();                                                          
+                                                                                          
+    useEffect(() => {                                                                    
+         const token = Cookies.get('token');                                              
+         if (!token) {                                                                    
+             router.push('/login');                                                       
+         }                                                                                
+    }, []);
     const [currentHole, setCurrentHole] = useState(1);
     const [numPutts, setNumPutts] = useState(1);
     const [formData, setFormData] = useState({});
