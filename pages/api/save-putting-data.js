@@ -8,7 +8,7 @@ export default async (req, res) => {
     const { course, holes, statistics } = req.body;
 
     if (!course || !holes || !statistics) {
-      return res.status(400).json({ error: 'Missing required fields' });
+      return res.status(400).json({ error: 'Missing required fields!' });
     }
 
     try {
