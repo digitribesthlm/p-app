@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import puttingImage from '../public/images/putting.webp';
 import Cookies from 'js-cookie';
@@ -7,6 +8,14 @@ import axios from 'axios';
 
 
 const Home = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = Cookies.get('token');
+    if (!token) {
+      router.replace('/login');
+    }
+  }, []);
     const [holes, setHoles] = useState(0);
     const [currentHole, setCurrentHole] = useState(1);
     const [numPutts, setNumPutts] = useState(1);
