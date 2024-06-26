@@ -1,4 +1,5 @@
 import { connectToDatabase } from '../../lib/mongodb';
+import jwt from 'jsonwebtoken';
 
 export default async (req, res) => {
   if (req.method === 'POST') {
@@ -13,14 +14,31 @@ export default async (req, res) => {
       const collectionName = process.env.MONGODB_COLLECTION;
       const collection = db.collection(collectionName);
       
-      const user = 'test-user2'
+      // Get the token from the request headers
+      const token = req.headers.authorization?.split(' ')[1];
+
+      if (!token) {
+        return res.status(401).json({ error: 'Unauthorized' });
+      }
+
+      // Verify and decode the token
+      const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+      const userId = decodedToken.userId;
+
+      // Find the user in the database using the userId
+      const usersCollection = db.collection('users');
+      const user = await usersCollection.findOne({ _id: userId });
+
+      if (!user) {
+        return res.status(401).json({ error: 'Unauthorized' });
+      }
       
       const newPuttingData = {
         course,
         holes,
         statistics,
         createdAt: new Date(),
-        user,
+        user: user.email,
       };
 
       const result = await collection.insertOne(newPuttingData);
