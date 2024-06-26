@@ -14,15 +14,17 @@ export default async (req, res) => {
        const { db } = await connectToDatabase();                                                                                                                                       
        const user = await db.collection('users').findOne({ email });                                                                                                                   
                                                                                                                                                                                        
-       if (!user) {                                                                                                                                                                    
-         return res.status(401).json({ error: 'Invalid email or password' });                                                                                                          
-       }                                                                                                                                                                               
-                                                                                                                                                                                       
-       const isPasswordValid = await bcrypt.compare(password, user.password);                                                                                                          
-                                                                                                                                                                                       
-       if (!isPasswordValid) {                                                                                                                                                         
-         return res.status(401).json({ error: 'Invalid email or password' });                                                                                                          
-       }                                                                                                                                                                               
+       if (!user) {
+         console.error('User not found for email:', email);
+         return res.status(401).json({ error: 'Invalid email or password' });
+       }
+
+       const isPasswordValid = await bcrypt.compare(password, user.password);
+
+       if (!isPasswordValid) {
+         console.error('Invalid password for user:', email);
+         return res.status(401).json({ error: 'Invalid email or password' });
+       }
                                                                                                                                                                                        
        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });                                                                                      
                                                                                                                                                                                        
