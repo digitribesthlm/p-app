@@ -59,12 +59,10 @@ import React, { useState, useEffect } from 'react';
      return puttsCount;                                   
    };                                                     
                                                           
-   return (                                               
-     <div className="container mx-auto p-4">              
-       <h1 className="text-2xl font-bold mb-4">Putting    
- Statistics</h1>                                          
-       <div className="grid grid-cols-1 md:grid-cols-2    
- lg:grid-cols-3 gap-4">                                   
+   return (
+     <div className="container mx-auto p-4">
+       <h1 className="text-2xl font-bold mb-4">Putting Statistics</h1>
+       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
          {puttingData.map((round) => {                    
            const puttsCount = countPutts(round.holes);    
                                                           
@@ -74,12 +72,10 @@ import React, { useState, useEffect } from 'react';
                className="card bg-base-100 shadow-xl      
  cursor-pointer"                                          
                onClick={() => handleRoundClick(round._id) 
-             >                                            
-               <div className="card-body">                
-                 <h2                                      
- className="card-title">{round.course}</h2>               
-                 <p className="text-sm">{new              
- Date(round.createdAt).toLocaleDateString()}</p>          
+             >
+               <div className="card-body">
+                 <h2 className="card-title">{round.course}</h2>
+                 <p className="text-sm">{new Date(round.createdAt).toLocaleDateString()}</p>
                  <div className="flex justify-between     
  items-center">                                           
                    <div>                                  
@@ -89,7 +85,7 @@ import React, { useState, useEffect } from 'react';
                    </div>                                 
                    <div className="text-6xl font-bold">
                      {puttsCount.total}
-                   </div>                      
+                   </div>
                  </div>                                   
                </div>                                     
              </div>                                       
