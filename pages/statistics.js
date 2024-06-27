@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';                                                                  
-import { useRouter } from 'next/router';                                                                             
-import Cookies from 'js-cookie';                                                                                     import axios from 'axios';                                                                                           
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
+import axios from 'axios';
+import { FaTrash } from 'react-icons/fa';
                                                                                                                       
 const Statistics = () => {                                                                                           
    const router = useRouter();                                                                                        
@@ -28,9 +30,25 @@ const Statistics = () => {
      }                                                                                                                
    };                                                                                                                 
                                                                                                                       
-   const handleRoundClick = (roundId) => {                                                                            
-     router.push(`/round-details?id=${roundId}`);                                                                     
-   };                                                                                                                 
+   const handleRoundClick = (roundId) => {
+     router.push(`/round-details?id=${roundId}`);
+   };
+
+   const handleDeleteRound = async (roundId) => {
+     const token = Cookies.get('token');
+     if (token) {
+       try {
+         await axios.delete(`/api/delete-round?id=${roundId}`, {
+           headers: {
+             Authorization: `Bearer ${token}`,
+           },
+         });
+         fetchPuttingData(token);
+       } catch (error) {
+         console.error('Error deleting round:', error);
+       }
+     }
+   };
                                                                                                                       
    const countPutts = (holes) => {                                                                                    
      const puttsCount = {                                                                                             
@@ -90,9 +108,20 @@ const Statistics = () => {
                className="card bg-base-100 shadow-xl cursor-pointer"                                                  
                onClick={() => handleRoundClick(round._id)}                                                            
              >                                                                                                        
-               <div className="card-body">                                                                            
-                 <h2 className="card-title">{round.course}</h2>                                                       
-                 <p className="text-sm">{new Date(round.createdAt).toLocaleDateString()}</p>                          
+               <div className="card-body">
+                 <div className="flex justify-between items-center">
+                   <h2 className="card-title">{round.course}</h2>
+                   <button
+                     className="btn btn-error btn-sm"
+                     onClick={(e) => {
+                       e.stopPropagation();
+                       handleDeleteRound(round._id);
+                     }}
+                   >
+                     <FaTrash />
+                   </button>
+                 </div>
+                 <p className="text-sm">{new Date(round.createdAt).toLocaleDateString()}</p>
                  <div className="flex justify-between items-center">                                                  
                    <div>                                                                                              
                      <p>1 Putts: {puttsCount.one}</p>                                                                 
