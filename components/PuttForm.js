@@ -47,8 +47,10 @@ const PuttForm = ({ hole, numPutts, formData, handleFormDataChange }) => {
                                 <option value="">Select</option>
                                 <option value="Short-High">Short / High</option>
                                 <option value="Short-Low">Short / Low</option>
+                                <option value="Short-Straight-Line">Short / Straight Line (front of the cup)</option>
                                 <option value="Past-High">Past / High</option>
                                 <option value="Past-Low">Past / Low</option>
+                                <option value="Past-Straight-Line">Past / Straight Line (behind the cup)</option>
                                 <option value="Success">Success</option>
                             </select>
                         </div>
@@ -74,6 +76,8 @@ const PuttForm = ({ hole, numPutts, formData, handleFormDataChange }) => {
                                 <option value="">Select</option>
                                 <option value="Over">Over</option>
                                 <option value="Under">Under</option>
+                              
+                      
                             </select>
                         </div>
                         <div className="bg-yellow-100 p-2 rounded">
