@@ -31,15 +31,15 @@ const Home = () => {
     const [showResults, setShowResults] = useState(false);
 
     useEffect(() => {
-        // Load form data from session storage if available
-        const savedFormData = sessionStorage.getItem('formData');
+        // Load form data from session-based cookie if available
+        const savedFormData = Cookies.get('formData');
         if (savedFormData) {
             setFormData(JSON.parse(savedFormData));
         }
     }, []);
 
     useEffect(() => {
-        // Calculate statistics and save formData to cookies whenever formData changes..
+        // Calculate statistics and save formData to session-based cookie whenever formData changes
         let puttCount = 0;
         let shortCount = 0;
         let lastPuttMeters = 0;
@@ -67,8 +67,8 @@ const Home = () => {
         } else {
             setNotification('');
         }
-        // Save form data to session storage
-        sessionStorage.setItem('formData', JSON.stringify(formData));
+        // Save form data to session-based cookie
+        Cookies.set('formData', JSON.stringify(formData), { expires: 1 });
     }, [formData]);
 
     useEffect(() => {
