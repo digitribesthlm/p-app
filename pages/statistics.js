@@ -88,7 +88,7 @@ import React, { useState, useEffect } from 'react';
                      <p>3+ Putts: {puttsCount.three}</p>  
                    </div>                                 
                    <div className="text-6xl               
- font-bold">{puttsCount.total}</div>                      
+ font-bold">{puttsCount.total}<\/div>                      
                  </div>                                   
                </div>                                     
              </div>                                       
