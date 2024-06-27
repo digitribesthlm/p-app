@@ -31,8 +31,8 @@ const Home = () => {
     const [showResults, setShowResults] = useState(false);
 
     useEffect(() => {
-        // Load form data from cookies if available
-        const savedFormData = Cookies.get('formData');
+        // Load form data from session storage if available
+        const savedFormData = sessionStorage.getItem('formData');
         if (savedFormData) {
             setFormData(JSON.parse(savedFormData));
         }
@@ -67,7 +67,8 @@ const Home = () => {
         } else {
             setNotification('');
         }
-        Cookies.set('formData', JSON.stringify(formData));
+        // Save form data to session storage
+        sessionStorage.setItem('formData', JSON.stringify(formData));
     }, [formData]);
 
     useEffect(() => {
@@ -188,6 +189,7 @@ const Home = () => {
                 setFormData({}); // Clear form data after successful save
                 setHoles(0); // Reset hole selection
                 setSelectedCourse(''); // Reset selected course
+                sessionStorage.removeItem('formData'); // Clear session storage
             } else {
                 alert("Failed to save data.");
             }
