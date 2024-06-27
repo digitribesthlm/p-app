@@ -69,7 +69,7 @@ const Home = () => {
         setTotalLastPuttMeters(lastPuttMeters);
         setTotalPuttMeters(totalMeters);
 
-        // Save form data to session-based cookie
+        // Save form data to session-based cookie.
         Cookies.set('formData', JSON.stringify(formData), { expires: 1 });
 
         // Check for notifications
