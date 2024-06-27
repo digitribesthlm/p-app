@@ -89,7 +89,7 @@ import React, { useState, useEffect } from 'react';
                    </div>                                 
                    <div className="text-6xl font-bold">
                      {puttsCount.total}
-                   </div>                      
+                   <\/div>                      
                  </div>                                   
                </div>                                     
              </div>                                       
