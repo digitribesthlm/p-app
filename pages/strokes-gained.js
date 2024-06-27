@@ -120,6 +120,7 @@ const StrokesGainedPage = () => {
             <option value="m">Meters</option>
           </select>
         </div>
+        <StrokesGainedChart data={data} />
       </div>
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-4xl">
         <StrokesGainedChart data={data} />
