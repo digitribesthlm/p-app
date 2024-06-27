@@ -20,6 +20,14 @@ const Home = () => {
     const [currentHole, setCurrentHole] = useState(1);
     const [numPutts, setNumPutts] = useState(1);
     const [formData, setFormData] = useState({});
+
+    useEffect(() => {
+        // Load form data from session-based cookie if available
+        const savedFormData = Cookies.get('formData');
+        if (savedFormData) {
+            setFormData(JSON.parse(savedFormData));
+        }
+    }, []);
     const [selectedCourse, setSelectedCourse] = useState('');
 
     // Statistics and Notifications
@@ -60,6 +68,9 @@ const Home = () => {
         setShortPutts(shortCount);
         setTotalLastPuttMeters(lastPuttMeters);
         setTotalPuttMeters(totalMeters);
+
+        // Save form data to session-based cookie
+        Cookies.set('formData', JSON.stringify(formData), { expires: 1 });
 
         // Check for notifications
         if (shortCount > 5) {
@@ -187,6 +198,7 @@ const Home = () => {
             if (response.status === 201) {
                 alert("Data saved successfully!");
                 setFormData({}); // Clear form data after successful save
+                sessionStorage.removeItem('formData'); // Clear session storage
                 setHoles(0); // Reset hole selection
                 setSelectedCourse(''); // Reset selected course
                 sessionStorage.removeItem('formData'); // Clear session storage
