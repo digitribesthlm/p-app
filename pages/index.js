@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import puttingImage from '../public/images/putting.webp';
+import puttingImage from '../public/images/GreenGenius_Logo.png';
 import Cookies from 'js-cookie';
 import PuttForm from '../components/PuttForm';
 import axios from 'axios';
@@ -228,7 +228,8 @@ const Home = () => {
 
     return (
         <div className="container mx-auto p-4">
-            <h1 className="text-2xl font-bold mb-4">Putting App</h1>
+            <h1 className="text-2xl font-bold mb-4">GREEN GENIUS</h1>
+            <p>Conquer the Golf Green</p>
             <ThemeSelector />
             {holes === 0 ? (
                 <div className="flex flex-col gap-4 mb-8">
