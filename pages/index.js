@@ -5,6 +5,7 @@ import puttingImage from '../public/images/putting.webp';
 import Cookies from 'js-cookie';
 import PuttForm from '../components/PuttForm';
 import axios from 'axios';
+import ThemeSelector from '../components/ThemeSelector';
 
 
 const Home = () => {
@@ -228,6 +229,7 @@ const Home = () => {
     return (
         <div className="container mx-auto p-4">
             <h1 className="text-2xl font-bold mb-4">Putting App</h1>
+            <ThemeSelector />
             {holes === 0 ? (
                 <div className="flex flex-col gap-4 mb-8">
                     <div className="mb-4 flex justify-center">

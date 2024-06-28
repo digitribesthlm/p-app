@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';                                                                  
  import { useRouter } from 'next/router';                                                                             
- import Cookies from 'js-cookie';                                                                                     
+ import Cookies from 'js-cookie';
+ import ThemeSelector from '../components/ThemeSelector';
  import axios from 'axios';                                                                                           
                                                                                                                       
  const RoundDetails = () => {                                                                                         
@@ -36,7 +37,8 @@ import React, { useState, useEffect } from 'react';
                                                                                                                       
    return (                                                                                                           
      <div className="container mx-auto p-4">                                                                          
-       <h1 className="text-2xl font-bold mb-4">Round Details</h1>                                                     
+       <h1 className="text-2xl font-bold mb-4">Round Details</h1>
+       <ThemeSelector />
        <div className="overflow-x-auto">                                                                              
          <table className="table table-compact w-full">                                                               
            <thead>                                                                                                    

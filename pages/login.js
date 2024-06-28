@@ -1,5 +1,6 @@
 import React, { useState } from 'react';                                                                                                                                              
- import axios from 'axios';                                                                                                                                                            
+ import axios from 'axios';
+ import ThemeSelector from '../components/ThemeSelector';
  import Cookies from 'js-cookie';                                                                                                                                                      
  import { useRouter } from 'next/router';                                                                                                                                              
                                                                                                                                                                                        
@@ -23,7 +24,8 @@ import React, { useState } from 'react';
                                                                                                                                                                                        
    return (                                                                                                                                                                            
      <div className="container mx-auto p-4">                                                                                                                                           
-       <h1 className="text-2xl font-bold mb-4">Login</h1>                                                                                                                              
+       <h1 className="text-2xl font-bold mb-4">Login</h1>
+       <ThemeSelector />
        {error && <p className="text-red-500">{error}</p>}                                                                                                                              
        <form onSubmit={handleSubmit}>                                                                                                                                                  
          <div className="mb-4">                                                                                                                                                        

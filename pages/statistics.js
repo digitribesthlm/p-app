@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { FaTrash } from 'react-icons/fa';
+import ThemeSelector from '../components/ThemeSelector';
                                                                                                                       
 const Statistics = () => {                                                                                           
    const router = useRouter();                                                                                        
@@ -96,7 +97,8 @@ const Statistics = () => {
                                                                                                                       
    return (                                                                                                           
      <div className="container mx-auto p-4">                                                                          
-       <h1 className="text-2xl font-bold mb-4">Putting Statistics</h1>                                                
+       <h1 className="text-2xl font-bold mb-4">Putting Statistics</h1>
+       <ThemeSelector />
        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">                                         
          {puttingData.map((round) => {                                                                                
            const puttsCount = countPutts(round.holes);                                                                
