@@ -10,7 +10,7 @@ const Settings = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission, e.g., send data to an API or update state
+    // Handle form submission, e.g., send data to an API or update state..
     console.log({ hcp, homeCourse, unit, status, gender });
   };
 
