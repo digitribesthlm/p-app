@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
 import ThemeSelector from '../components/ThemeSelector';
 
 const Settings = () => {
@@ -7,6 +9,15 @@ const Settings = () => {
   const [unit, setUnit] = useState('meters');
   const [status, setStatus] = useState('active');
   const [gender, setGender] = useState('');
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = Cookies.get('token');
+    if (!token) {
+      router.replace('/login');
+    }
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
