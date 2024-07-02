@@ -23,7 +23,7 @@ const Home = () => {
     const [formData, setFormData] = useState({});
 
     useEffect(() => {
-        // Load form data from session-based cookie if available
+        // Load form data from session-based cookie if available.
         const savedFormData = Cookies.get('formData');
         if (savedFormData) {
             setFormData(JSON.parse(savedFormData));
