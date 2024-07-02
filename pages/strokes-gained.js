@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
 import StrokesGainedChart from '../components/StrokesGainedChart';
 
 // Dummy data for different handicap levels
@@ -66,6 +68,15 @@ const StrokesGainedPage = () => {
   const [selectedHCP, setSelectedHCP] = useState('Pro');
   const [selectedUnit, setSelectedUnit] = useState('ft');
   const [data, setData] = useState(dataPro);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = Cookies.get('token');
+    if (!token) {
+      router.replace('/login');
+    }
+  }, []);
 
   const handleHCPChange = (event) => {
     const hcp = event.target.value;
