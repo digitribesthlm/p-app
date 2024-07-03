@@ -9,7 +9,14 @@ export default async (req, res) => {
             const puttingData = await db.collection('putting').find({}).toArray();
             const puttingStats = await db.collection('putting_stats').find({}).toArray();
 
-            res.status(200).json({ puttingData, puttingStats });
+            const { hcp } = req.query;
+            const filteredPuttingStats = puttingStats.map(stat => ({
+                ...stat,
+                statistics: {
+                    [hcp]: stat.statistics[hcp]
+                }
+            }));
+            res.status(200).json({ puttingData, puttingStats: filteredPuttingStats });
         } catch (error) {
             console.error('Error fetching data:', error);
             res.status(500).json({ error: 'Internal Server Error' });

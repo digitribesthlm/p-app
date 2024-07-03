@@ -16,6 +16,7 @@ const StrokesGainedPage = () => {
     const [endDate, setEndDate] = useState(new Date());
     const [error, setError] = useState('');
     const [chartData, setChartData] = useState(null);
+    const [selectedHcp, setSelectedHcp] = useState('pro');
 
     const router = useRouter();
 
@@ -30,7 +31,7 @@ const StrokesGainedPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`/api/fetchPuttingData?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}`);
+                const response = await axios.get(`/api/fetchPuttingData?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}&hcp=${selectedHcp}`);
                 if (response.data) {
                     setPuttingData(response.data.puttingData || []);
                     setPuttingStats(response.data.puttingStats || []);
@@ -86,7 +87,7 @@ const StrokesGainedPage = () => {
             return 0;
         }
     
-        const proAveragePutts = statsForRange.statistics.pro.average_putts;
+        const proAveragePutts = statsForRange.statistics[selectedHcp].average_putts;
         const strokesGained = proAveragePutts - numPutts;
         console.log(`Pro average putts: ${proAveragePutts}, Strokes gained: ${strokesGained}`);
         return strokesGained;
@@ -171,6 +172,12 @@ return (
         <div className="flex gap-4 mb-4">
             <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
             <DatePicker selected={endDate} onChange={date => setEndDate(date)} />
+            <select value={selectedHcp} onChange={(e) => setSelectedHcp(e.target.value)}>
+                <option value="pro">Pro</option>
+                <option value="0_hcp">0 HCP</option>
+                <option value="5_hcp">5 HCP</option>
+                <option value="10_hcp">10 HCP</option>
+            </select>
         </div>
         {chartData && (
             <div className="w-full max-w-4xl mb-8">
