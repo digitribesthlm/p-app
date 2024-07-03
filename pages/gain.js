@@ -233,16 +233,16 @@ return (
                 <thead>
                     <tr>
                         <th className="border border-gray-300 p-2">Distance</th>
-                        <th className="border border-gray-300 p-2">Pro Average Putts</th>
-                        <th className="border border-gray-300 p-2">Pro Success Rate</th>
+                        <th className="border border-gray-300 p-2">{selectedHcp} Average Putts</th>
+                        <th className="border border-gray-300 p-2">{selectedHcp} Success Rate</th>
                     </tr>
                 </thead>
                 <tbody>
                     {puttingStats.map((stat, index) => (
                         <tr key={index}>
                             <td className="border border-gray-300 p-2">{stat.distance}</td>
-                            <td className="border border-gray-300 p-2">{stat.statistics.pro.average_putts}</td>
-                            <td className="border border-gray-300 p-2">{stat.statistics.pro.success_rate}</td>
+                            <td className="border border-gray-300 p-2">{stat.statistics[selectedHcp]?.average_putts || 'N/A'}</td>
+                            <td className="border border-gray-300 p-2">{stat.statistics[selectedHcp]?.success_rate || 'N/A'}</td>
                         </tr>
                     ))}
                 </tbody>
