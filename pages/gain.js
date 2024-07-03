@@ -16,6 +16,7 @@ const StrokesGainedPage = () => {
     const [endDate, setEndDate] = useState(new Date());
     const [error, setError] = useState('');
     const [chartData, setChartData] = useState(null);
+    const [totalStrokesGained, setTotalStrokesGained] = useState(0);
     const [selectedHcp, setSelectedHcp] = useState('pro');
 
     const router = useRouter();
@@ -53,7 +54,11 @@ const StrokesGainedPage = () => {
             console.log('Processed Data:', processedData);  // What does this look like?
             const groupedData = groupByDistanceRanges(processedData, puttingStats);
             console.log('Grouped Data:', groupedData);  // Are these grouped correctly?
-            setChartData(createChartData(groupedData));
+            const chartData = createChartData(groupedData);
+            setChartData(chartData);
+
+            const totalGained = groupedData.reduce((sum, item) => sum + item.strokesGained, 0);
+            setTotalStrokesGained(totalGained);
             console.log('Chart Data:', createChartData(groupedData));  // Final structure for Chart.js
         }
     }, [puttingData, puttingStats]);
@@ -181,7 +186,9 @@ return (
         </div>
         {chartData && (
             <div className="w-full max-w-4xl mb-8">
-                <h2 className="text-2xl font-bold mb-4">Strokes Gained/Lost by Distance</h2>
+                <h2 className="text-2xl font-bold mb-4">
+                    Strokes Gained/Lost by Distance (Total Gain {totalStrokesGained >= 0 ? '+' : ''}{totalStrokesGained.toFixed(2)} putts)
+                </h2>
                 <Bar data={chartData} options={{
                     responsive: true,
                     scales: {
