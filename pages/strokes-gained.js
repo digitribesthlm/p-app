@@ -29,6 +29,10 @@ const StrokesGainedPage = () => {
         fetchData();
     }, [startDate, endDate]);
 
+    const formatHolesData = (holes) => {
+        return holes.map((hole, index) => `Hole ${index + 1}: ${hole.putts} putts`).join(', ');
+    };
+
     return (
         <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
             <h1 className="text-3xl font-bold mb-6">Strokes Gained Putting Data</h1>
@@ -55,7 +59,7 @@ const StrokesGainedPage = () => {
                                 <td className="border border-gray-300 p-2">{item._id}</td>
                                 <td className="border border-gray-300 p-2">{item.course}</td>
                                 <td className="border border-gray-300 p-2">{item.user}</td>
-                                <td className="border border-gray-300 p-2">{item.holes.hole_number.putts}</td>
+                                <td className="border border-gray-300 p-2">{formatHolesData(item.holes)}</td>
                                 <td className="border border-gray-300 p-2">{item.createdAt}</td>
                             </tr>
                         ))}
