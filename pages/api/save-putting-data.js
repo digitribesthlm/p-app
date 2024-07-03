@@ -9,8 +9,10 @@ function getUserEmailFromToken(token) {
   } catch (error) {
     if (error.name === 'TokenExpiredError') {
       console.log('Token has expired');
-      // You might want to trigger a token refresh here or handle it in your frontend
-    } else {
+      return null;
+    } else if (error.name === 'JsonWebTokenError') {
+      console.error('Invalid token:', error);
+      return null;
       console.error('Error decoding token:', error);
     }
     return null;
@@ -20,7 +22,15 @@ function getUserEmailFromToken(token) {
 export default async (req, res) => {
   if (req.method === 'POST') {
     const token = req.headers.authorization?.split(' ')[1]; // Assuming the token is sent in the Authorization header
+    if (!token) {
+      return res.status(401).json({ error: 'Token is missing' });
+    }
+
     const email = getUserEmailFromToken(token);
+
+    if (!email) {
+      return res.status(401).json({ error: 'Invalid or expired token' });
+    }
     
     if (!email) {
       return res.status(401).json({ error: 'Unauthorized' });
