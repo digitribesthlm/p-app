@@ -1,20 +1,16 @@
-// File: /pages/strokes-gained.js
+// File: /pages/showData.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
 
-const StrokesGainedPage = () => {
+const ShowDataPage = () => {
     const [puttingData, setPuttingData] = useState([]);
     const [puttingStats, setPuttingStats] = useState([]);
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
     const [error, setError] = useState('');
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`/api/fetchPuttingData?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}`);
+                const response = await axios.get('/api/getPuttingData');
                 if (response.data) {
                     setPuttingData(response.data.puttingData || []);
                     setPuttingStats(response.data.puttingStats || []);
@@ -22,39 +18,25 @@ const StrokesGainedPage = () => {
                     setError('No data returned from the server.');
                 }
             } catch (error) {
-                console.error('Failed to fetch putting data:', error);
+                console.error('Failed to fetch data:', error);
                 setError('Failed to fetch data from the database.');
             }
         };
         fetchData();
-    }, [startDate, endDate]);
-
-    const formatHolesData = (holes) => {
-        return holes.map((hole, index) => {
-            const puttsDetails = hole.putts.map((putt, puttIndex) => 
-                `Putt ${puttIndex + 1}: Length: ${putt.length}, Level: ${putt.level}, Outcome: ${putt.outcome}, Prepp: ${putt.prepp}, Read: ${putt.read}, Speed: ${putt.speed}, Stroke: ${putt.stroke}, Mental: ${putt.mental}`
-            ).join('; ');
-            return `Hole ${hole.hole_number}: ${puttsDetails}`;
-        }).join(' | ');
-    };
+    }, []);
 
     return (
         <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
-            <h1 className="text-3xl font-bold mb-6">Strokes Gained Putting Data</h1>
+            <h1 className="text-3xl font-bold mb-6">Putting Data Display</h1>
             {error && <p className="text-red-500">{error}</p>}
-            <div className="flex gap-4 mb-4">
-                <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
-                <DatePicker selected={endDate} onChange={date => setEndDate(date)} />
-            </div>
             <h2 className="text-xl font-bold">Putting Data</h2>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto mb-6">
                 <table className="table-auto border-collapse border border-gray-400 p-2">
                     <thead>
                         <tr>
                             <th className="border border-gray-300 p-2">ID</th>
                             <th className="border border-gray-300 p-2">Course</th>
                             <th className="border border-gray-300 p-2">User</th>
-                            <th className="border border-gray-300 p-2">Hole Details</th>
                             <th className="border border-gray-300 p-2">Created At</th>
                         </tr>
                     </thead>
@@ -64,14 +46,13 @@ const StrokesGainedPage = () => {
                                 <td className="border border-gray-300 p-2">{item._id}</td>
                                 <td className="border border-gray-300 p-2">{item.course}</td>
                                 <td className="border border-gray-300 p-2">{item.user}</td>
-                                <td className="border border-gray-300 p-2">{formatHolesData(item.holes)}</td>
                                 <td className="border border-gray-300 p-2">{item.createdAt}</td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
-            <h2 className="text-xl font-bold mt-4">Putting Stats Data</h2>
+            <h2 className="text-xl font-bold">Putting Stats Data</h2>
             <div className="overflow-x-auto">
                 <table className="table-auto border-collapse border border-gray-400 p-2">
                     <thead>
@@ -96,4 +77,4 @@ const StrokesGainedPage = () => {
     );
 };
 
-export default StrokesGainedPage;
+export default ShowDataPage;
