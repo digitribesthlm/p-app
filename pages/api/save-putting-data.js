@@ -13,7 +13,6 @@ function getUserEmailFromToken(token) {
     } else if (error.name === 'JsonWebTokenError') {
       console.error('Invalid token:', error);
       return null;
-      console.error('Error decoding token:', error);
     }
     return null;
   }
@@ -32,9 +31,6 @@ export default async (req, res) => {
       return res.status(401).json({ error: 'Invalid or expired token' });
     }
     
-    if (!email) {
-      return res.status(401).json({ error: 'Unauthorized' });
-    }
 
     const { course, holes, statistics } = req.body;
 
