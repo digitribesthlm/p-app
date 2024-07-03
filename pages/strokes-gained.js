@@ -30,7 +30,12 @@ const StrokesGainedPage = () => {
     }, [startDate, endDate]);
 
     const formatHolesData = (holes) => {
-        return holes.map((hole, index) => `Hole ${index + 1}: ${hole.putts} putts`).join(', ');
+        return holes.map((hole, index) => {
+            const puttsDetails = hole.putts.map((putt, puttIndex) => 
+                `Putt ${puttIndex + 1}: Length: ${putt.length}, Level: ${putt.level}, Outcome: ${putt.outcome}, Prepp: ${putt.prepp}, Read: ${putt.read}, Speed: ${putt.speed}, Stroke: ${putt.stroke}, Mental: ${putt.mental}`
+            ).join('; ');
+            return `Hole ${hole.hole_number}: ${puttsDetails}`;
+        }).join(' | ');
     };
 
     return (
@@ -49,7 +54,7 @@ const StrokesGainedPage = () => {
                             <th className="border border-gray-300 p-2">ID</th>
                             <th className="border border-gray-300 p-2">Course</th>
                             <th className="border border-gray-300 p-2">User</th>
-                            <th className="border border-gray-300 p-2">Holes</th>
+                            <th className="border border-gray-300 p-2">Hole Details</th>
                             <th className="border border-gray-300 p-2">Created At</th>
                         </tr>
                     </thead>
