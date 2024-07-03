@@ -25,7 +25,8 @@ const StrokesGainedPage = () => {
             router.replace('/login');
         }
     }, []);
-        const fetchData = async () => {
+
+    const fetchData = async () => {
             try {
                 const response = await axios.get(`/api/fetchPuttingData?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}`);
                 if (response.data) {
@@ -39,7 +40,7 @@ const StrokesGainedPage = () => {
                 setError('Failed to fetch data from the database.');
             }
         };
-        fetchData();
+    fetchData();
     }, [startDate, endDate]);
 
     useEffect(() => {
