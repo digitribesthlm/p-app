@@ -187,7 +187,7 @@ return (
         {chartData && (
             <div className="w-full max-w-4xl mb-8">
                 <h2 className="text-2xl font-bold mb-4">
-                    Strokes Gained/Lost by Distance (Total {totalStrokesGained >= 0 ? '+' : ''}{totalStrokesGained.toFixed(2)} putts)
+                    Strokes {totalStrokesGained >= 0 ? 'Gained' : 'Lost'} by Distance (Total {totalStrokesGained >= 0 ? '+' : ''}{totalStrokesGained.toFixed(2)} putts)
                 </h2>
                 <Bar data={chartData} options={{
                     responsive: true,
