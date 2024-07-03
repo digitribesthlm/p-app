@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
@@ -15,7 +17,14 @@ const StrokesGainedPage = () => {
     const [error, setError] = useState('');
     const [chartData, setChartData] = useState(null);
 
+    const router = useRouter();
+
     useEffect(() => {
+        const token = Cookies.get('token');
+        if (!token) {
+            router.replace('/login');
+        }
+    }, []);
         const fetchData = async () => {
             try {
                 const response = await axios.get(`/api/fetchPuttingData?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}`);
