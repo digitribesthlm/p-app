@@ -26,23 +26,6 @@ const StrokesGainedPage = () => {
         }
     }, []);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get(`/api/fetchPuttingData?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}`);
-                if (response.data) {
-                    setPuttingData(response.data.puttingData || []);
-                    setPuttingStats(response.data.puttingStats || []);
-                } else {
-                    setError('No data returned from the server.');
-                }
-            } catch (error) {
-                console.error('Failed to fetch putting data:', error);
-                setError('Failed to fetch data from the database.');
-            }
-        };
-        fetchData();
-    }, [startDate, endDate]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -62,22 +45,6 @@ const StrokesGainedPage = () => {
         fetchData();
     }, [startDate, endDate]);
 
-    const fetchData = async () => {
-            try {
-                const response = await axios.get(`/api/fetchPuttingData?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}`);
-                if (response.data) {
-                    setPuttingData(response.data.puttingData || []);
-                    setPuttingStats(response.data.puttingStats || []);
-                } else {
-                    setError('No data returned from the server.');
-                }
-            } catch (error) {
-                console.error('Failed to fetch putting data:', error);
-                setError('Failed to fetch data from the database.');
-            }
-        };
-    fetchData();
-    }, [startDate, endDate]);
 
     useEffect(() => {
         if (puttingData.length > 0 && puttingStats.length > 0) {
