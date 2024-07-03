@@ -44,7 +44,7 @@ const StrokesGainedPage = () => {
             }
         };
         fetchData();
-    }, [startDate, endDate]);
+    }, [startDate, endDate, selectedHcp]);
 
 
     useEffect(() => {
