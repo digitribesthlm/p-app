@@ -14,48 +14,50 @@ const PuttForm = ({ hole, numPutts, formData, handleFormDataChange }) => {
                 <div key={index} className="mb-2">
                     <h3 className="text-lg font-medium">Putt {index + 1}</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="bg-blue-100 p-2 rounded">
-                            <label className="block text-sm font-medium text-gray-700">Outcome</label>
-                            <select
-                                value={putt.outcome}
-                                onChange={(e) => handleChange(index, 'outcome', e.target.value)}
-                                className="select select-bordered w-full"
-                            >
-                                <option value="">Select</option>
-                                <option value="Short-High">Short / High</option>
-                                <option value="Short-Low">Short / Low</option>
-                                <option value="Short-Straight-Line">Short / Straight Line (front of the cup)</option>
-                                <option value="Past-High">Past / High</option>
-                                <option value="Past-Low">Past / Low</option>
-                                <option value="Past-Straight-Line">Past / Straight Line (behind the cup)</option>
-                                <option value="Success">Success</option>
-                            </select>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div className="bg-blue-100 p-2 rounded">
+                                <label className="block text-sm font-medium text-gray-700">Outcome</label>
+                                <select
+                                    value={putt.outcome}
+                                    onChange={(e) => handleChange(index, 'outcome', e.target.value)}
+                                    className="select select-bordered w-full"
+                                >
+                                    <option value="">Select</option>
+                                    <option value="Short-High">Short / High</option>
+                                    <option value="Short-Low">Short / Low</option>
+                                    <option value="Short-Straight-Line">Short / Straight Line (front of the cup)</option>
+                                    <option value="Past-High">Past / High</option>
+                                    <option value="Past-Low">Past / Low</option>
+                                    <option value="Past-Straight-Line">Past / Straight Line (behind the cup)</option>
+                                    <option value="Success">Success</option>
+                                </select>
+                            </div>
+                            <div className="bg-blue-100 p-2 rounded">
+                                <label className="block text-sm font-medium text-gray-700">Length</label>
+                                <input
+                                    type="number"
+                                    value={putt.length}
+                                    onChange={(e) => handleChange(index, 'length', e.target.value)}
+                                    className="input input-bordered w-full"
+                                />
+                            </div>
+                            <div className="bg-blue-100 p-2 rounded">
+                                <label className="block text-sm font-medium text-gray-700">Level</label>
+                                <select
+                                    value={putt.level}
+                                    onChange={(e) => handleChange(index, 'level', e.target.value)}
+                                    className="select select-bordered w-full"
+                                >
+                                    <option value="">Select</option>
+                                    <option value="Up">Up</option>
+                                    <option value="Down">Down</option>
+                                    <option value="Sidehill">Sidehill</option>
+                                    <option value="Flat">Flat</option>
+                                </select>
+                            </div>
                         </div>
-                        {putt.outcome !== 'Success' && (
-                            <>
-                                <div className="bg-blue-100 p-2 rounded">
-                                    <label className="block text-sm font-medium text-gray-700">Length</label>
-                                    <input
-                                        type="number"
-                                        value={putt.length}
-                                        onChange={(e) => handleChange(index, 'length', e.target.value)}
-                                        className="input input-bordered w-full"
-                                    />
-                                </div>
-                                <div className="bg-blue-100 p-2 rounded">
-                                    <label className="block text-sm font-medium text-gray-700">Level</label>
-                                    <select
-                                        value={putt.level}
-                                        onChange={(e) => handleChange(index, 'level', e.target.value)}
-                                        className="select select-bordered w-full"
-                                    >
-                                        <option value="">Select</option>
-                                        <option value="Up">Up</option>
-                                        <option value="Down">Down</option>
-                                        <option value="Sidehill">Sidehill</option>
-                                        <option value="Flat">Flat</option>
-                                    </select>
-                                </div>
+                        {putt.outcome && putt.outcome !== 'Success' && (
+                            <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mt-4">
                                 <div className="bg-yellow-100 p-2 rounded">
                                     <label className="block text-sm font-medium text-gray-700">Prepp</label>
                                     <select
@@ -113,7 +115,7 @@ const PuttForm = ({ hole, numPutts, formData, handleFormDataChange }) => {
                                         className="input input-bordered w-full"
                                     />
                                 </div>
-                            </>
+                            </div>
                         )}
                     </div>
                 </div>
