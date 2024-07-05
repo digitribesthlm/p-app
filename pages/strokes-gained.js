@@ -209,6 +209,7 @@ return (
                 }} />
             </div>
         )}
+        {/*
         <h2 className="text-xl font-bold">Putting Data</h2>
         <div className="overflow-x-auto">
             <table className="table-auto border-collapse border border-gray-400 p-2">
@@ -234,6 +235,7 @@ return (
                 </tbody>
             </table>
         </div>
+        */}
         <h2 className="text-xl font-bold mt-4">Putting Stats Data</h2>
         <div className="overflow-x-auto">
             <table className="table-auto border-collapse border border-gray-400 p-2">
