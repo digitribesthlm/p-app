@@ -174,10 +174,26 @@ return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
         <h1 className="text-3xl font-bold mb-6">Strokes Gained Putting Data</h1>
         {error && <p className="text-red-500">{error}</p>}
-        <div className="flex gap-4 mb-4">
-            <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
-            <DatePicker selected={endDate} onChange={date => setEndDate(date)} />
-            <select value={selectedHcp} onChange={(e) => setSelectedHcp(e.target.value)}>
+        <div className="flex flex-col gap-2 mb-4">
+            <div className="flex gap-2">
+                <DatePicker
+                    selected={startDate}
+                    onChange={date => setStartDate(date)}
+                    className="input input-bordered input-sm w-full max-w-xs"
+                    dateFormat="dd/MM/yyyy"
+                />
+                <DatePicker
+                    selected={endDate}
+                    onChange={date => setEndDate(date)}
+                    className="input input-bordered input-sm w-full max-w-xs"
+                    dateFormat="dd/MM/yyyy"
+                />
+            </div>
+            <select
+                value={selectedHcp}
+                onChange={(e) => setSelectedHcp(e.target.value)}
+                className="select select-bordered select-sm w-full max-w-xs"
+            >
                 <option value="pro">Pro</option>
                 <option value="0_hcp">0 HCP</option>
                 <option value="5_hcp">5 HCP</option>
@@ -209,6 +225,7 @@ return (
                 }} />
             </div>
         )}
+        {/*
         <h2 className="text-xl font-bold">Putting Data</h2>
         <div className="overflow-x-auto">
             <table className="table-auto border-collapse border border-gray-400 p-2">
@@ -234,6 +251,7 @@ return (
                 </tbody>
             </table>
         </div>
+        */}
         <h2 className="text-xl font-bold mt-4">Putting Stats Data</h2>
         <div className="overflow-x-auto">
             <table className="table-auto border-collapse border border-gray-400 p-2">
