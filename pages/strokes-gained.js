@@ -174,15 +174,42 @@ return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
         <h1 className="text-3xl font-bold mb-6">Strokes Gained Putting Data</h1>
         {error && <p className="text-red-500">{error}</p>}
-        <div className="flex gap-4 mb-4">
-            <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
-            <DatePicker selected={endDate} onChange={date => setEndDate(date)} />
-            <select value={selectedHcp} onChange={(e) => setSelectedHcp(e.target.value)}>
-                <option value="pro">Pro</option>
-                <option value="0_hcp">0 HCP</option>
-                <option value="5_hcp">5 HCP</option>
-                <option value="10_hcp">10 HCP</option>
-            </select>
+        <div className="flex flex-col md:flex-row gap-4 mb-4">
+            <div className="form-control">
+                <label className="label">
+                    <span className="label-text">Start Date</span>
+                </label>
+                <DatePicker 
+                    selected={startDate} 
+                    onChange={date => setStartDate(date)}
+                    className="input input-bordered w-full max-w-xs" 
+                />
+            </div>
+            <div className="form-control">
+                <label className="label">
+                    <span className="label-text">End Date</span>
+                </label>
+                <DatePicker 
+                    selected={endDate} 
+                    onChange={date => setEndDate(date)}
+                    className="input input-bordered w-full max-w-xs" 
+                />
+            </div>
+            <div className="form-control">
+                <label className="label">
+                    <span className="label-text">Handicap</span>
+                </label>
+                <select 
+                    value={selectedHcp} 
+                    onChange={(e) => setSelectedHcp(e.target.value)}
+                    className="select select-bordered w-full max-w-xs"
+                >
+                    <option value="pro">Pro</option>
+                    <option value="0_hcp">0 HCP</option>
+                    <option value="5_hcp">5 HCP</option>
+                    <option value="10_hcp">10 HCP</option>
+                </select>
+            </div>
         </div>
         {chartData && (
             <div className="w-full max-w-4xl mb-8">
