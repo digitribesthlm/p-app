@@ -54,65 +54,67 @@ const PuttForm = ({ hole, numPutts, formData, handleFormDataChange }) => {
                                 <option value="Success">Success</option>
                             </select>
                         </div>
-                        <div className="bg-yellow-100 p-2 rounded">
-                            <label className="block text-sm font-medium text-gray-700">Prepp</label>
-                            <select
-                                value={putt.prepp}
-                                onChange={(e) => handleChange(index, 'prepp', e.target.value)}
-                                className="select select-bordered w-full"
-                            >
-                                <option value="">Select</option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                            </select>
-                        </div>
-                        <div className="bg-yellow-100 p-2 rounded">
-                            <label className="block text-sm font-medium text-gray-700">Read</label>
-                            <select
-                                value={putt.read}
-                                onChange={(e) => handleChange(index, 'read', e.target.value)}
-                                className="select select-bordered w-full"
-                            >
-                                <option value="">Select</option>
-                                <option value="Over">Over</option>
-                                <option value="Under">Under</option>
-                              
-                      
-                            </select>
-                        </div>
-                        <div className="bg-yellow-100 p-2 rounded">
-                            <label className="block text-sm font-medium text-gray-700">Speed</label>
-                            <select
-                                value={putt.speed}
-                                onChange={(e) => handleChange(index, 'speed', e.target.value)}
-                                className="select select-bordered w-full"
-                            >
-                                <option value="">Select</option>
-                                <option value="Fast">Fast</option>
-                                <option value="Slow">Slow</option>
-                            </select>
-                        </div>
-                        <div className="bg-yellow-100 p-2 rounded">
-                            <label className="block text-sm font-medium text-gray-700">Stroke</label>
-                            <select
-                                value={putt.stroke}
-                                onChange={(e) => handleChange(index, 'stroke', e.target.value)}
-                                className="select select-bordered w-full"
-                            >
-                                <option value="">Select</option>
-                                <option value="Face">Face</option>
-                                <option value="Path">Path</option>
-                            </select>
-                        </div>
-                        <div className="bg-yellow-100 p-2 rounded">
-                            <label className="block text-sm font-medium text-gray-700">Mental</label>
-                            <input
-                                type="text"
-                                value={putt.mental}
-                                onChange={(e) => handleChange(index, 'mental', e.target.value)}
-                                className="input input-bordered w-full"
-                            />
-                        </div>
+                        {putt.outcome !== 'Success' && (
+                            <>
+                                <div className="bg-yellow-100 p-2 rounded">
+                                    <label className="block text-sm font-medium text-gray-700">Prepp</label>
+                                    <select
+                                        value={putt.prepp}
+                                        onChange={(e) => handleChange(index, 'prepp', e.target.value)}
+                                        className="select select-bordered w-full"
+                                    >
+                                        <option value="">Select</option>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+                                <div className="bg-yellow-100 p-2 rounded">
+                                    <label className="block text-sm font-medium text-gray-700">Read</label>
+                                    <select
+                                        value={putt.read}
+                                        onChange={(e) => handleChange(index, 'read', e.target.value)}
+                                        className="select select-bordered w-full"
+                                    >
+                                        <option value="">Select</option>
+                                        <option value="Over">Over</option>
+                                        <option value="Under">Under</option>
+                                    </select>
+                                </div>
+                                <div className="bg-yellow-100 p-2 rounded">
+                                    <label className="block text-sm font-medium text-gray-700">Speed</label>
+                                    <select
+                                        value={putt.speed}
+                                        onChange={(e) => handleChange(index, 'speed', e.target.value)}
+                                        className="select select-bordered w-full"
+                                    >
+                                        <option value="">Select</option>
+                                        <option value="Fast">Fast</option>
+                                        <option value="Slow">Slow</option>
+                                    </select>
+                                </div>
+                                <div className="bg-yellow-100 p-2 rounded">
+                                    <label className="block text-sm font-medium text-gray-700">Stroke</label>
+                                    <select
+                                        value={putt.stroke}
+                                        onChange={(e) => handleChange(index, 'stroke', e.target.value)}
+                                        className="select select-bordered w-full"
+                                    >
+                                        <option value="">Select</option>
+                                        <option value="Face">Face</option>
+                                        <option value="Path">Path</option>
+                                    </select>
+                                </div>
+                                <div className="bg-yellow-100 p-2 rounded">
+                                    <label className="block text-sm font-medium text-gray-700">Mental</label>
+                                    <input
+                                        type="text"
+                                        value={putt.mental}
+                                        onChange={(e) => handleChange(index, 'mental', e.target.value)}
+                                        className="input input-bordered w-full"
+                                    />
+                                </div>
+                            </>
+                        )}
                     </div>
                 </div>
             ))}
