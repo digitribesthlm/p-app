@@ -24,9 +24,9 @@ const MobileMenu = () => {
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-5 h-5 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </label>
             </div> 
-            <div className="drawer-side">
-                <label htmlFor="my-drawer" className="drawer-overlay"></label>
-                <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
+            <div className="drawer-side z-50">
+                <label htmlFor="my-drawer" className="drawer-overlay z-40"></label>
+                <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content z-50">
                     <li>
                         <a onClick={() => handleLinkClick("/")} className="text-xl font-semibold">Home</a>
                     </li>
