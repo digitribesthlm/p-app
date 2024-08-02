@@ -42,7 +42,7 @@ const Settings = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700">Home Course</label>
+            <label className="block text-gray-700">Home Courses!</label>
             <input
               type="text"
               className="input input-bordered w-full"
