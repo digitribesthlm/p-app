@@ -333,7 +333,7 @@ const Home = () => {
                     ))}
                     {showResults && (
                         <div className="mt-4">
-                            <h2 className="text-xl font-bold mb-2">Summary</h2>
+                            <h2 className="text-xl font-bold mb-2">Summary!</h2>
                             <p className="mb-4">Course: {selectedCourse}</p>
                             <div className="overflow-x-auto">
                                 <table className="table table-compact w-full">
