@@ -25,10 +25,14 @@ const ShortGamePage = () => {
     };
 
     try {
-      await saveShortGameData(roundData);
-      alert('Round saved successfully!');
-      setSelectedCourse('');
-      setHoleScores({});
+      const response = await axios.post('/api/save-short-game-data', roundData);
+      if (response.status === 201) {
+        alert('Round saved successfully!');
+        setSelectedCourse('');
+        setHoleScores({});
+      } else {
+        throw new Error('Failed to save round');
+      }
     } catch (error) {
       console.error('Error saving round:', error);
       alert('An error occurred while saving the round.');
