@@ -28,17 +28,31 @@ const ShortGameForm = () => {
     setCurrentHole((prevHole) => prevHole + 1);
   };
 
-  const handleSaveRound = () => {
-    // TODO: Implement saving the round data when the user has completed the entire round
-    console.log('Round data:', {
-      course: selectedCourse,
-      missedGreens,
-    });
-    // Reset form data
-    setSelectedCourse('');
-    setCurrentHole(1);
-    setHoleScore('');
-    setMissedGreens([]);
+  const handleSaveRound = async () => {
+    try {
+      const response = await fetch('/api/save-short-game-round', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          course: selectedCourse,
+          missedGreens,
+        }),
+      });
+
+      if (response.ok) {
+        // Reset form data
+        setSelectedCourse('');
+        setCurrentHole(1);
+        setHoleScore('');
+        setMissedGreens([]);
+      } else {
+        console.error('Error saving round:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error saving round:', error);
+    }
   };
 
   return (
