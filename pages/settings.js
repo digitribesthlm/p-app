@@ -53,39 +53,66 @@ const Settings = () => {
           </div>
           <div className="mb-4">
             <label className="block text-gray-700">Preferred Unit</label>
-            <select
-              className="select select-bordered w-full"
-              value={unit}
-              onChange={(e) => setUnit(e.target.value)}
-            >
-              <option value="meters">Meters</option>
-              <option value="feet">Feet</option>
-            </select>
+            <div className="flex space-x-2">
+              <button
+                className={`btn ${unit === 'meters' ? 'btn-primary' : 'btn-secondary'}`}
+                onClick={() => setUnit('meters')}
+              >
+                Meters
+              </button>
+              <button
+                className={`btn ${unit === 'feet' ? 'btn-primary' : 'btn-secondary'}`}
+                onClick={() => setUnit('feet')}
+              >
+                Feet
+              </button>
+            </div>
           </div>
           <div className="mb-4">
             <label className="block text-gray-700">Status</label>
-            <select
-              className="select select-bordered w-full"
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
-            >
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
-            </select>
+            <div className="flex space-x-2">
+              <button
+                className={`btn ${status === 'active' ? 'btn-primary' : 'btn-secondary'}`}
+                onClick={() => setStatus('active')}
+              >
+                Active
+              </button>
+              <button
+                className={`btn ${status === 'inactive' ? 'btn-primary' : 'btn-secondary'}`}
+                onClick={() => setStatus('inactive')}
+              >
+                Inactive
+              </button>
+            </div>
           </div>
           <div className="mb-4">
             <label className="block text-gray-700">Gender</label>
-            <select
-              className="select select-bordered w-full"
-              value={gender}
-              onChange={(e) => setGender(e.target.value)}
-            >
-              <option value="">Select Gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
-              <option value="prefer_not_to_say">Prefer not to say</option>
-            </select>
+            <div className="flex space-x-2">
+              <button
+                className={`btn ${gender === 'male' ? 'btn-primary' : 'btn-secondary'}`}
+                onClick={() => setGender('male')}
+              >
+                Male
+              </button>
+              <button
+                className={`btn ${gender === 'female' ? 'btn-primary' : 'btn-secondary'}`}
+                onClick={() => setGender('female')}
+              >
+                Female
+              </button>
+              <button
+                className={`btn ${gender === 'other' ? 'btn-primary' : 'btn-secondary'}`}
+                onClick={() => setGender('other')}
+              >
+                Other
+              </button>
+              <button
+                className={`btn ${gender === 'prefer_not_to_say' ? 'btn-primary' : 'btn-secondary'}`}
+                onClick={() => setGender('prefer_not_to_say')}
+              >
+                Prefer not to say
+              </button>
+            </div>
           </div>
           <div className="text-center">
             <button type="submit" className="btn btn-primary w-full">
